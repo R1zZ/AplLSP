@@ -65,7 +65,7 @@ class Asesor extends Component {
                 ctTableFullWidth
                 ctTableResponsive
                 content={
-                  <div>
+                  <div className="App">
                     <label>Input</label>
                     <FormInputs
                       onAdd={this.onAdd}
