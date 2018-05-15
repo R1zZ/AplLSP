@@ -1,10 +1,10 @@
 import Dashboard from "views/Dashboard/Dashboard";
 import Admin from "views/Admin/Admin";
-import TUK from "views/TUK/TUK";
+import Asesor from "views/Asesor/Asesor";
+import Asesmen from "views/Asesmen/Asesmen";
+import SoalCBT from "views/SoalCBT/SoalCBT";
+import Tuk from "views/Tuk/Tuk";
 import Applicant from "views/Applicant/Applicant";
-import Icons from "views/Icons/Icons";
-import Maps from "views/Maps/Maps";
-import Notifications from "views/Notifications/Notifications";
 
 const DashboardRoutes = [
   {
@@ -20,24 +20,24 @@ const DashboardRoutes = [
     component: Admin
   },
   {
-    path: "/tuk",
-    name: "TUK",
+    path: "/Asesor",
+    name: "Asesor",
     icon: "pe-7s-note2",
-    component: TUK
+    component: Asesor
   },
   {
-    path: "/applicant",
-    name: "Applicant",
+    path: "/Asesmen",
+    name: "Asesmen",
     icon: "pe-7s-news-paper",
-    component: Applicant
+    component: Asesmen
   },
-  { path: "/icons", name: "Icons", icon: "pe-7s-science", component: Icons },
-  { path: "/maps", name: "Maps", icon: "pe-7s-map-marker", component: Maps },
+  { path: "/SoalCBT", name: "Soal CBT", icon: "pe-7s-science", component: SoalCBT },
+  { path: "/Tuk", name: "Tuk", icon: "pe-7s-map-marker", component: Tuk },
   {
-    path: "/notifications",
-    name: "Notifications",
+    path: "/Applicant",
+    name: "Applicant",
     icon: "pe-7s-bell",
-    component: Notifications
+    component: Applicant
   },
   { redirect: true, path: "/", to: "/Dashboard", name: "Dashboard" }
 ];
