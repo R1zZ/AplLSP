@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap";
+import { FormGroup, ControlLabel, FormControl} from "react-bootstrap";
 
 function FieldGroup({ label, ...props }) {
   return (
@@ -11,16 +11,32 @@ function FieldGroup({ label, ...props }) {
 }
 
 export class FormInputs extends Component {
+  constructor(props){
+    super(props)
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(event){
+    event.preventDefault();
+    this.props.onAdd(this.firstName.value, this.lastName.value);
+    this.firstName.value = '';
+    this.lastName.value = '';
+  }
   render() {
-    var row = [];
-    for (var i = 0; i < this.props.ncols.length; i++) {
-      row.push(
-        <div key={i} className={this.props.ncols[i]}>
-          <FieldGroup {...this.props.proprieties[i]} />
-        </div>
-      );
-    }
-    return <Row>{row}</Row>;
+    return(
+      <form onSubmit={this.onSubmit}>
+        <input 
+          placeholder="Nama Depan"
+          ref={firstName => this.firstName = firstName}
+        /><p/>
+        <input
+          placeholder="Nama Belakang"
+          ref={lastName => this.lastName= lastName}
+        /><p/>
+        <button>Tambah</button>
+      </form>
+    )
   }
 }
 
