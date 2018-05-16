@@ -25,7 +25,7 @@ class Asesor extends Component {
     return this.state.nilai
   }
   
-  onAdd(nik,nama,tempatLahir,tgl,almt,npwp){
+  onAdd(nik,nama,tempatLahir,tgl,almt,npwp,jk,keahlian,stts,jdwl){
     const nilai = this.getNilai();
     nilai.push({
       nik,
@@ -33,7 +33,11 @@ class Asesor extends Component {
       tempatLahir,
       tgl,
       almt,
-      npwp
+      npwp,
+      jk,
+      keahlian,
+      stts,
+      jdwl
     });
   
     this.setState({nilai});
@@ -47,7 +51,7 @@ class Asesor extends Component {
     this.setState({nilai: filterNilai});
   }
   
-  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp, originalName){
+  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp,jk, keahlian, stts, jdwl, originalName){
     let nilai = this.getNilai();
     nilai = nilai.map(nilai => {
       if (nilai.nik === originalName) {
@@ -57,6 +61,10 @@ class Asesor extends Component {
         nilai.tgl = tgl;
         nilai.almt = almt;
         nilai.npwp = npwp;
+        nilai.jk = jk;
+        nilai.keahlian = keahlian;
+        nilai.stts = stts;
+        nilai.jdwl = jdwl;
       }
       return nilai;
     });
@@ -74,7 +82,6 @@ class Asesor extends Component {
                 ctTableResponsive
                 content={
                   <div className="App">
-                    <label>Input</label>
                     <FormInputs
                       onAdd={this.onAdd}
                     />
@@ -89,6 +96,10 @@ class Asesor extends Component {
                             tgl={nilai.tgl}
                             almt={nilai.almt}
                             npwp={nilai.npwp}
+                            jk={nilai.jk}
+                            keahlian={nilai.keahlian}
+                            stts={nilai.stts}
+                            jdwl={nilai.jdwl}
                             onDelete={this.onDelete}
                             onEditSubmit={this.onEditSubmit}
                           />
