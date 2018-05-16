@@ -36,13 +36,15 @@ class ListNilai extends Component {
             this.nama.value,
             this.tempatLahir.value,
             this.tgl.value,
+            this.almt.value,
+            this.npwp.value,
             this.props.nik
         );
         this.setState({ isEdit: false });
     }
 
     render() {
-        const { nik, nama, tempatLahir, tgl } = this.props;
+        const { nik, nama, tempatLahir, tgl, almt, npwp } = this.props;
         return (
             <div>
                 {
@@ -62,8 +64,15 @@ class ListNilai extends Component {
                             />
                             <input
                                 type="date"
-                                placeholder="tanggal lahir"
                                 ref={tgl => this.tgl = tgl} defaultValue={tgl}
+                            />
+                            <input
+                                placeholder="alamat"
+                                ref={almt => this.almt = almt} defaultValue={almt}
+                            />
+                            <input
+                                placeholder="NPWP"
+                                ref={npwp => this.npwp = npwp} defaultValue={npwp}
                             />
                             <button>Save</button>
                         </form>
@@ -76,6 +85,8 @@ class ListNilai extends Component {
                                             <td>Nama</td>
                                             <td>Tempat Lahir</td>
                                             <td>Tanggal Lahir</td>
+                                            <td>Alamat</td>
+                                            <td>NPWP</td>
                                             <td>Action</td>
                                         </tr>
                                     </thead>
@@ -85,6 +96,8 @@ class ListNilai extends Component {
                                             <td>{nama}</td>
                                             <td>{tempatLahir}</td>
                                             <td>{tgl}</td>
+                                            <td>{almt}</td>
+                                            <td>{npwp}</td>
                                             <td>
                                                 <button onClick={this.onDelete}>Delete</button>
                                                 <button onClick={this.onEdit}>Edit</button>

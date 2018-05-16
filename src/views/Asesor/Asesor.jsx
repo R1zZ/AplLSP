@@ -25,13 +25,15 @@ class Asesor extends Component {
     return this.state.nilai
   }
   
-  onAdd(nik,nama,tempatLahir,tgl){
+  onAdd(nik,nama,tempatLahir,tgl,almt,npwp){
     const nilai = this.getNilai();
     nilai.push({
       nik,
       nama,
       tempatLahir,
-      tgl
+      tgl,
+      almt,
+      npwp
     });
   
     this.setState({nilai});
@@ -45,7 +47,7 @@ class Asesor extends Component {
     this.setState({nilai: filterNilai});
   }
   
-  onEditSubmit(nik, nama, tempatLahir, tgl, originalName){
+  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp, originalName){
     let nilai = this.getNilai();
     nilai = nilai.map(nilai => {
       if (nilai.nik === originalName) {
@@ -53,6 +55,8 @@ class Asesor extends Component {
         nilai.nama = nama;
         nilai.tempatLahir = tempatLahir;
         nilai.tgl = tgl;
+        nilai.almt = almt;
+        nilai.npwp = npwp;
       }
       return nilai;
     });
@@ -83,6 +87,8 @@ class Asesor extends Component {
                             nama={nilai.nama}
                             tempatLahir={nilai.tempatLahir}
                             tgl={nilai.tgl}
+                            almt={nilai.almt}
+                            npwp={nilai.npwp}
                             onDelete={this.onDelete}
                             onEditSubmit={this.onEditSubmit}
                           />

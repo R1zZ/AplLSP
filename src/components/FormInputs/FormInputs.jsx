@@ -13,12 +13,16 @@ export class FormInputs extends Component {
       this.nik.value,
       this.nama.value,
       this.tempatLahir.value,
-      this.tgl.value
+      this.tgl.value,
+      this.almt.value,
+      this.npwp.value
     );
     this.nik.value = '';
     this.nama.value = '';
     this.tempatLahir.value = '';
     this.tgl.value = '';
+    this.almt.value = '';
+    this.npwp.value = '';
   }
   render() {
     return (
@@ -37,8 +41,15 @@ export class FormInputs extends Component {
         /><p />
         <input
           type="date"
-          placeholder="Tanggal Lahir"
           ref={tgl => this.tgl = tgl}
+        /><p />
+        <input
+          placeholder="alamat"
+          ref={almt => this.almt = almt}
+        /><p />
+        <input
+          placeholder="NPWP"
+          ref={npwp => this.npwp = npwp}
         /><p />
         <button>Tambah</button>
       </form>
