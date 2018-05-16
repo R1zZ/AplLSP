@@ -5,54 +5,58 @@ import Card from "components/Card/Card.jsx";
 import FormInputs from 'components/FormInputs/FormInputs.jsx'
 import ListNilai from 'components/FormInputs/ListNilai.jsx';
 class Asesor extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-
+  
     this.state = {
-      nilai: []
+      nilai:[]
     };
-
+  
     this.onAdd = this.onAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
   }
-
-  componentDidMount() {
+  
+  componentDidMount(){
     this.getNilai();
   }
-
-  getNilai() {
+  
+  getNilai(){
     return this.state.nilai
   }
-
-  onAdd(firstName, lastName) {
+  
+  onAdd(nik,nama,tempatLahir,tgl){
     const nilai = this.getNilai();
     nilai.push({
-      firstName,
-      lastName
+      nik,
+      nama,
+      tempatLahir,
+      tgl
     });
-
-    this.setState({ nilai });
+  
+    this.setState({nilai});
   }
-
-  onDelete(firstName) {
+  
+  onDelete(nik){
     const nilai = this.getNilai();
     const filterNilai = nilai.filter(nilai => {
-      return nilai.firstName !== firstName;
+      return nilai.nik !== nik;
     });
-    this.setState({ nilai: filterNilai });
+    this.setState({nilai: filterNilai});
   }
-
-  onEditSubmit(firstName, lastName, originalName) {
+  
+  onEditSubmit(nik, nama, tempatLahir, tgl, originalName){
     let nilai = this.getNilai();
     nilai = nilai.map(nilai => {
-      if (nilai.firstName === originalName) {
-        nilai.firstName = firstName;
-        nilai.lastName = lastName;
+      if (nilai.nik === originalName) {
+        nilai.nik = nik;
+        nilai.nama = nama;
+        nilai.tempatLahir = tempatLahir;
+        nilai.tgl = tgl;
       }
       return nilai;
     });
-    this.setState({ nilai });
+    this.setState({nilai});
   }
   render() {
     return (
@@ -61,25 +65,24 @@ class Asesor extends Component {
           <Row>
             <Col md={12}>
               <Card
+                title="List Asesor"
+                ctTableFullWidth
+                ctTableResponsive
                 content={
                   <div className="App">
+                    <label>Input</label>
                     <FormInputs
                       onAdd={this.onAdd}
                     />
-                  </div>
-                }
-              />
-              <Card
-                title="List Asesor"
-                content={
-                  <div>
                     {
                       this.state.nilai.map(nilai => {
                         return (
-                          <ListNilai
-                            key={nilai.firstName}
-                            firstName={nilai.firstName}
-                            lastName={nilai.lastName}
+                          <ListNilai 
+                            key={nilai.nik}
+                            nik={nilai.nik}
+                            nama={nilai.nama}
+                            tempatLahir={nilai.tempatLahir}
+                            tgl={nilai.tgl}
                             onDelete={this.onDelete}
                             onEditSubmit={this.onEditSubmit}
                           />

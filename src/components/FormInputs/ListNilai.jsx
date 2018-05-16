@@ -21,8 +21,8 @@ class ListNilai extends Component {
     }
 
     onDelete() {
-        const { onDelete, firstName } = this.props;
-        onDelete(firstName);
+        const { onDelete, nik } = this.props;
+        onDelete(nik);
     }
 
     onEdit() {
@@ -32,27 +32,38 @@ class ListNilai extends Component {
     onEditSubmit(event) {
         event.preventDefault();
         this.props.onEditSubmit(
-            this.firstName.value,
-            this.lastName.value,
-            this.props.firstName
+            this.nik.value,
+            this.nama.value,
+            this.tempatLahir.value,
+            this.tgl.value,
+            this.props.nik
         );
         this.setState({ isEdit: false });
     }
 
     render() {
-        const { firstName, lastName } = this.props;
+        const { nik, nama, tempatLahir, tgl } = this.props;
         return (
             <div>
                 {
                     this.state.isEdit ? (
                         <form onSubmit={this.onEditSubmit}>
                             <input
-                                placeholder="firstName"
-                                ref={firstName => this.firstName = firstName} defaultValue={firstName}
+                                placeholder="nik"
+                                ref={nik => this.nik = nik} defaultValue={nik}
                             />
                             <input
-                                placeholder="lastName"
-                                ref={lastName => this.lastName = lastName} defaultValue={lastName}
+                                placeholder="nama"
+                                ref={nama => this.nama = nama} defaultValue={nama}
+                            />
+                            <input
+                                placeholder="tempat lahir"
+                                ref={tempatLahir => this.tempatLahir = tempatLahir} defaultValue={tempatLahir}
+                            />
+                            <input
+                                type="date"
+                                placeholder="tanggal lahir"
+                                ref={tgl => this.tgl = tgl} defaultValue={tgl}
                             />
                             <button>Save</button>
                         </form>
@@ -61,15 +72,19 @@ class ListNilai extends Component {
                                 <Table>
                                     <thead>
                                         <tr>
-                                            <td>Nama Depan</td>
-                                            <td>Nama Belakang</td>
+                                            <td>NIK</td>
+                                            <td>Nama</td>
+                                            <td>Tempat Lahir</td>
+                                            <td>Tanggal Lahir</td>
                                             <td>Action</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{firstName}</td>
-                                            <td>{lastName}</td>
+                                            <td>{nik}</td>
+                                            <td>{nama}</td>
+                                            <td>{tempatLahir}</td>
+                                            <td>{tgl}</td>
                                             <td>
                                                 <button onClick={this.onDelete}>Delete</button>
                                                 <button onClick={this.onEdit}>Edit</button>
