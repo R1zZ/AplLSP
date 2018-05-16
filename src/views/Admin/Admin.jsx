@@ -60,11 +60,11 @@ class Admin extends Component {
             <form onSubmit={this.handleSubmit}>
                     <h1>Masukan Data Admin</h1>
                     
-                  <div class="contentform">
+                  <div className="contentform">
                     <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
 
-                    <div class="leftcontact">
-                      <div class="form-group">
+                    <div className="leftcontact">
+                      <div className="form-group">
                         <p>NIK<span>*</span></p>
                         <input 
                           type="text"
@@ -72,9 +72,9 @@ class Admin extends Component {
                           onChange={this.handleChange} 
                           value={this.state.value.NIK} 
                         />
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div> 
-                      <div class="form-group">
+                      <div className="form-group">
                         <p>Nama <span>*</span></p>
                           <input 
                             type="text" 
@@ -82,9 +82,9 @@ class Admin extends Component {
                             onChange={this.handleChange} 
                             value={this.state.value.name} 
                           />
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <p>E-mail <span>*</span></p>	
                         <input 
                           type="text" 
@@ -92,27 +92,27 @@ class Admin extends Component {
                           onChange={this.handleChange} 
                           value={this.state.value.email} 
                         />
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div>	
-                      <div class="form-group">
+                      <div className="form-group">
                         <p>Company <span>*</span></p>
                         <input type="text" name="society" id="society" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Société' doit être renseigné."/>
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <p>Company Address <span>*</span></p>
                         <input type="text" name="adresse" id="adresse" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné."/>
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <p>Postcode <span>*</span></p>
                         <input type="text" name="postal" id="postal" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."/>
-                        <div class="validation"></div>
+                        <div className="validation"></div>
                       </div>
                     </div>
 
-                <div class="rightcontact">	
-                  <div class="form-group">
+                <div className="rightcontact">	
+                  <div className="form-group">
                     <p>Username<span>*</span></p>
                     <input 
                       type="text" 
@@ -121,31 +121,31 @@ class Admin extends Component {
                       placeholder="Username" 
                       value={this.state.value.username}
                     />
-                    <div class="validation"></div>
+                    <div className="validation"></div>
                   </div>	
-                  <div class="form-group">
+                  <div className="form-group">
                     <p>Phone number <span>*</span></p>	
                     <input type="text" name="phone" id="phone" data-rule="maxlen:10" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Téléphone' doit être renseigné. Minimum 10 chiffres"/>
-                    <div class="validation"></div>
+                    <div className="validation"></div>
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <p>Function <span>*</span></p>
                     <input type="text" name="fonction" id="fonction" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/>
-                    <div class="validation"></div>
+                    <div className="validation"></div>
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <p>Subject <span>*</span></p>	
                     <input type="text" name="sujet" id="sujet" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."/>
-                    <div class="validation"></div>
+                    <div className="validation"></div>
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <p>Message <span>*</span></p>
                     <textarea name="message" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea>
-                    <div class="validation"></div>
+                    <div className="validation"></div>
                   </div>	
                 </div>
               </div>
-              <button type="submit" class="bouton-contact">Send</button>
+              <button type="submit" className="bouton-contact">Send</button>
               </form>
               <div>
               {//nampilin dari inputan API
