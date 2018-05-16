@@ -1,14 +1,4 @@
 import React, { Component } from "react";
-import { FormGroup, ControlLabel, FormControl} from "react-bootstrap";
-
-function FieldGroup({ label, ...props }) {
-  return (
-    <FormGroup>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-    </FormGroup>
-  );
-}
 
 export class FormInputs extends Component {
   constructor(props){
