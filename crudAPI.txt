@@ -1,0 +1,84 @@
+import React, { Component } from "react";
+import {
+  Grid,
+  Row, Col
+} from "react-bootstrap";
+import axios from 'axios';
+import { Card } from "components/Card/Card.jsx";
+
+//import '../css/input.css';
+const url =`http://youtube.com`
+//import { request } from "https";
+
+class FormInputs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: {
+        NIK: '',
+        nama: '',
+        Ttl: '',
+        alamat: '',
+        npwp: '',
+        jk: '',
+        keahlian: '',
+        statusAsesor: '',
+        jdwlAsesor: ''
+      },
+      lsp: []
+    };
+  }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+  handlueSubmit = event => {
+    event.preventDefault();
+
+    const nilai = {
+      NIK: this.state.NIK,
+      nama: this.state.nama,
+      Ttl: this.state.Ttl,
+      alamat: this.state.alamat,
+      npwp: this.state.npwp,
+      jk: this.state.jk,
+      keahlian: this.state.keahlian,
+      statusAsesor: this.state.statusAsesor,
+      jdwlAsesor: this.state.jdwlAsesor
+    };
+    console.log(nilai);
+    axios.post(url, nilai)
+      .then(request => {
+        console.log(request);
+        console.log(request.data);
+      })
+  }
+  componentDidMount() {
+    axios.get(url)
+      .then(request => {
+        this.setState({
+          lsp: request.data.lsp
+        });
+      })
+  }
+  render() {
+    return (
+      <div className="content">
+        <Grid fluid>
+          <Row>
+            <Col md={12}>
+              <Card
+                content={
+                  <label>operasional CRUD</label>
+                }
+              />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    );
+  }
+}
+
+export default FormInputs;
