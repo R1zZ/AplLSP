@@ -26,11 +26,11 @@ class Admin extends Component {
   handleChange = event => {
       this.setState({
         [event.target.name] : event.target.value
-      });
+      });//memanggil semua data pada DB
   }
   handleSubmit = event => {
       event.preventDefault();
-
+ //pendeklarasian state di DB
       const docs ={
           NIK: this.state.NIK,
           name: this.state.name,
