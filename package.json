@@ -21,9 +21,11 @@
     "react-dom": "16.2.0",
     "react-google-maps": "9.4.5",
     "react-notification-system": "0.2.17",
+    "react-radio-button": "^1.5.4",
     "react-redux": "^5.0.7",
     "react-router-dom": "4.2.2",
     "react-scripts": "1.1.1",
+    "reactstrap": "^6.0.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },
