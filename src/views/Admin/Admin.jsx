@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
   Grid,
-  Row
+  Row,Col
 } from "react-bootstrap";
 import axios from 'axios';
 //import { PostApi } from 'components/PostApi/PostApi.jsx';
@@ -57,6 +57,7 @@ class Admin extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
+            <Col md={8}>
             <form onSubmit={this.handleSubmit}>
                     <h1>Masukan Data Admin</h1>
                     
@@ -154,6 +155,8 @@ class Admin extends Component {
                 })
               }
               </div>
+
+            </Col>
           </Row>
         </Grid>
       </div>
