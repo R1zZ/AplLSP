@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
-import FormInputs from 'components/FormInputs/FormInputs.jsx'
-import ListNilai from 'components/FormInputs/ListNilai.jsx';
+import FormInputs from 'components/FormInput/FormInputs.jsx'
+import ListNilai from 'components/FormInput/ListNilai.jsx';
 class Asesor extends Component {
   constructor(props){
     super(props);
