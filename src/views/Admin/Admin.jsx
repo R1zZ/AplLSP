@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { Card } from "components/Card/Card.jsx";
 
-import '../css/input.css';
+import 'components/css/input.css';
 const url = `http://192.168.10.123:3000/admin`;
 class Admin extends Component {
   constructor(props) {

@@ -1,31 +1,31 @@
 import React, { Component } from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+//import { Grid, Row, Col } from "react-bootstrap";
 
-import Card from "components/Card/Card.jsx";
+//import Card from "components/Card/Card.jsx";
 import FormInputs from 'components/FormInput/FormInputs.jsx'
 import ListNilai from 'components/FormInput/ListNilai.jsx';
 class Asesor extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
+
     this.state = {
-      nilai:[]
+      nilai: []
     };
-  
+
     this.onAdd = this.onAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.getNilai();
   }
-  
-  getNilai(){
+
+  getNilai() {
     return this.state.nilai
   }
-  
-  onAdd(nik,nama,tempatLahir,tgl,almt,npwp,jk,keahlian,stts,jdwl){
+
+  onAdd(nik, nama, tempatLahir, tgl, almt, npwp, jk, keahlian, stts, jdwl) {
     const nilai = this.getNilai();
     nilai.push({
       nik,
@@ -39,19 +39,19 @@ class Asesor extends Component {
       stts,
       jdwl
     });
-  
-    this.setState({nilai});
+
+    this.setState({ nilai });
   }
-  
-  onDelete(nik){
+
+  onDelete(nik) {
     const nilai = this.getNilai();
     const filterNilai = nilai.filter(nilai => {
       return nilai.nik !== nik;
     });
-    this.setState({nilai: filterNilai});
+    this.setState({ nilai: filterNilai });
   }
-  
-  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp,jk, keahlian, stts, jdwl, originalName){
+
+  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp, jk, keahlian, stts, jdwl, originalName) {
     let nilai = this.getNilai();
     nilai = nilai.map(nilai => {
       if (nilai.nik === originalName) {
@@ -68,50 +68,38 @@ class Asesor extends Component {
       }
       return nilai;
     });
-    this.setState({nilai});
+    this.setState({ nilai });
   }
   render() {
     return (
       <div className="content">
-        <Grid fluid>
-          <Row>
-            <Col md={12}>
-              <Card
-                title="List Asesor"
-                ctTableFullWidth
-                ctTableResponsive
-                content={
-                  <div className="App">
-                    <FormInputs
-                      onAdd={this.onAdd}
-                    />
-                    {
-                      this.state.nilai.map(nilai => {
-                        return (
-                          <ListNilai 
-                            key={nilai.nik}
-                            nik={nilai.nik}
-                            nama={nilai.nama}
-                            tempatLahir={nilai.tempatLahir}
-                            tgl={nilai.tgl}
-                            almt={nilai.almt}
-                            npwp={nilai.npwp}
-                            jk={nilai.jk}
-                            keahlian={nilai.keahlian}
-                            stts={nilai.stts}
-                            jdwl={nilai.jdwl}
-                            onDelete={this.onDelete}
-                            onEditSubmit={this.onEditSubmit}
-                          />
-                        );
-                      })
-                    }
-                  </div>
-                }
-              />
-            </Col>
-          </Row>
-        </Grid>
+
+        <div className="App">
+          <FormInputs
+            onAdd={this.onAdd}
+          />
+          {
+            this.state.nilai.map(nilai => {
+              return (
+                <ListNilai
+                  key={nilai.nik}
+                  nik={nilai.nik}
+                  nama={nilai.nama}
+                  tempatLahir={nilai.tempatLahir}
+                  tgl={nilai.tgl}
+                  almt={nilai.almt}
+                  npwp={nilai.npwp}
+                  jk={nilai.jk}
+                  keahlian={nilai.keahlian}
+                  stts={nilai.stts}
+                  jdwl={nilai.jdwl}
+                  onDelete={this.onDelete}
+                  onEditSubmit={this.onEditSubmit}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

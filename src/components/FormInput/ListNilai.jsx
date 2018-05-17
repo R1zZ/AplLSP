@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { button, Table } from 'react-bootstrap';
-
+import '../css/Asesor.css';
+import {Table} from 'react-bootstrap';
 const nilai = [];
 
 localStorage.setItem('nilai', JSON.stringify(nilai));
@@ -53,54 +53,82 @@ class ListNilai extends Component {
             <div>
                 {
                     this.state.isEdit ? (
-                        <form onSubmit={this.onEditSubmit}>
-                            <input
-                                placeholder="nik"
-                                ref={nik => this.nik = nik} defaultValue={nik}
-                            />
-                            <input
-                                placeholder="nama"
-                                ref={nama => this.nama = nama} defaultValue={nama}
-                            />
-                            <input
-                                placeholder="tempat lahir"
-                                ref={tempatLahir => this.tempatLahir = tempatLahir} defaultValue={tempatLahir}
-                            />
-                            <input
-                                type="date"
-                                ref={tgl => this.tgl = tgl} defaultValue={tgl}
-                            />
-                            <input
-                                placeholder="alamat"
-                                ref={almt => this.almt = almt} defaultValue={almt}
-                            />
-                            <input
-                                placeholder="NPWP"
-                                ref={npwp => this.npwp = npwp} defaultValue={npwp}
-                            />
-                            <select ref={jk => this.jk = jk} defaultValue={jk} >
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                            </select>
-                            <input
-                                placeholder="Keahlian"
-                                ref={keahlian => this.keahlian = keahlian} defaultValue={keahlian}
-                            />
-                            <label>
-                                Status Asesor
-          <select ref={stts => this.stts = stts} >
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                        <form className="contact100-form validate-form" onSubmit={this.onEditSubmit}>
+                            <span className="contact100-form-title">
+                                Contact Us
+                            </span>
+                            <label className="label-input100" >NIK *</label>
+                            <div className="wrap-input100">
+                                <input type="text" name="nik" placeholder="NIK" ref={nik => this.nik = nik} defaultValue={nik} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100" >Nama *</label>
+                            <div className="wrap-input100">
+                                <input type="text" name="nama" placeholder="Name of Asesor" ref={nama => this.nama = nama} defaultValue={nama} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+
+                            <label className="label-input100" >Tempat Tanggal Lahir *</label>
+                            <div className="wrap-input100 rs1">
+                                <input type="text" name="tempatLahir" placeholder="Tempat Lahir" ref={tempatLahir => this.tempatLahir = tempatLahir} defaultValue={tempatLahir} />
+                                <span className="focus-input100"></span>
+                            </div>
+                            <div className="wrap-input100 rs1">
+                                <input type="date" name="tgl" placeholder="Tanggal Lahir" ref={tgl => this.tgl = tgl} defaultValue={tgl} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100" >Alamat *</label>
+                            <div className="wrap-input100">
+                                <input type="text" name="almt" placeholder="Alamat" ref={almt => this.almt = almt} defaultValue={almt} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100">NPWP</label>
+                            <div className="wrap-input100">
+                                <input type="text" name="npwp" placeholder="NPWP" ref={npwp => this.npwp = npwp} defaultValue={npwp} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100">Jenis Kelamin</label>
+                            <div className="wrap-select">
+                                <select ref={jk => this.jk = jk} defaultValue={jk}>
+                                    <option value="Pria">Pria</option>
+                                    <option value="Wanita">Wanita</option>
                                 </select>
-                            </label>
-                            <p />
-                            <input
-                                type="date"
-                                ref={jdwl => this.jdwl = jdwl}
-                            /><p />
-                            <button>Save</button>
-                        </form>
-                    ) : (
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100">Keahlian</label>
+                            <div className="wrap-input100 rs1">
+                                <input type="text" name="keahlian" placeholder="Keahlian Asesor" ref={keahlian => this.keahlian = keahlian} defaultValue={keahlian}/>
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <label className="label-input100">Status Asesor *</label>
+                            <div className="wrap-select">
+                                <select ref={stts => this.stts = stts} defaultValue={stts}>
+                                    <option value="Pria">Pria</option>
+                                    <option value="Wanita">Wanita</option>
+                                </select>
+                                <span className="focus-input100"></span>
+                            </div>
+                            <label className="label-input100">Jadwal Asessor</label>
+                            <div className="wrap-input100 rs1">
+                                <input type="date" name="jdwl" placeholder="Jadwal" ref={jdwl => this.jdwl = jdwl} defaultValue={jdwl} />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <div className="container-contact100-form-btn">
+                                <button className="contact100-form-btn">
+                                    <span>
+                                        Submit
+                            </span>
+                                </button>
+                            </div>
+                        </form>) : (
                             <div className="content">
                                 <Table>
                                     <thead>
@@ -120,7 +148,7 @@ class ListNilai extends Component {
                                     </thead>
                                     <tbody>
                                         {
-                                            [1, 2, 3].map((data, key) => {
+                                            [nilai].map((data, key) => {
                                                 return (
                                                     <tr key={key}>
                                                         <td>{nik}</td>

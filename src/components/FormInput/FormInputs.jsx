@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import '../css/Asesor.css';
+
 
 export class FormInputs extends Component {
   constructor(props) {
@@ -34,64 +36,86 @@ export class FormInputs extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-      <label>NIK</label>
-        <input
-          placeholder="NIK"
-          ref={nik => this.nik = nik}
-        /><p />
-        <label>Nama Asesor</label>
-        <input
-          placeholder="Nama"
-          ref={nama => this.nama = nama}
-        /><p />
-        <label>Tempat Lahir</label>
-        <input
-          placeholder="Tempat Lahir"
-          ref={tempatLahir => this.tempatLahir = tempatLahir}
-        /><p />
-        <label>Tanggal Lahir</label>
-        <input
-          type="date"
-          ref={tgl => this.tgl = tgl}
-        /><p />
-        <label>Alamat Asesor</label>
-        <input
-          placeholder="alamat"
-          ref={almt => this.almt = almt}
-        /><p />
-        <label>No NPWP</label>
-        <input
-          placeholder="NPWP"
-          ref={npwp => this.npwp = npwp}
-        /><p />
-        <label>
-          Jenis Kelamin
-          <select ref={jk => this.jk = jk} >
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
-        </label>
-        <p />
-        <input
-          placeholder="Keahlian"
-          ref={keahlian => this.keahlian = keahlian}
-        /><p />
-        <label>
-          Status Asesor
-          <select ref={stts => this.stts = stts} >
-            <option value="Aktif">Aktif</option>
-            <option value="Tidak Aktif">Tidak Aktif</option>
-          </select>
-        </label>
-        <p />
-        <label>Jadwal Asesor</label>
-        <input
-          type="date"
-          ref={jdwl => this.jdwl = jdwl}
-        /><p />
-        <button>Tambah</button>
-      </form>
+      <div className="container-contact100">
+        <div className="wrap-contact100">
+          <form className="contact100-form validate-form" onSubmit={this.onSubmit}>
+            <span className="contact100-form-title">
+              Contact Us
+				</span>
+            <label className="label-input100" >NIK *</label>
+            <div className="wrap-input100">
+              <input type="text" name="nik" placeholder="NIK" ref={nik => this.nik = nik} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100" >Nama *</label>
+            <div className="wrap-input100">
+              <input type="text" name="nama" placeholder="Name of Asesor" ref={nama => this.nama = nama} />
+              <span className="focus-input100"></span>
+            </div>
+
+
+            <label className="label-input100" >Tempat Tanggal Lahir *</label>
+            <div className="wrap-input100 rs1">
+              <input type="text" name="tempatLahir" placeholder="Tempat Lahir" ref={tempatLahir => this.tempatLahir = tempatLahir} />
+              <span className="focus-input100"></span>
+            </div>
+            <div className="wrap-input100 rs1">
+              <input type="date" name="tgl" placeholder="Tanggal Lahir" ref={tgl => this.tgl = tgl} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100" >Alamat *</label>
+            <div className="wrap-input100">
+              <input type="text" name="almt" placeholder="Alamat" ref={almt => this.almt = almt} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100">NPWP</label>
+            <div className="wrap-input100">
+              <input type="text" name="npwp" placeholder="NPWP" ref={npwp => this.npwp = npwp} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100">Jenis Kelamin</label>
+            <div className="wrap-select">
+              <select ref={jk => this.jk = jk} >
+                <option value="Pria">Pria</option>
+                <option value="Wanita">Wanita</option>
+              </select>
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100">Keahlian</label>
+            <div className="wrap-input100 rs1">
+              <input type="text" name="keahlian" placeholder="Keahlian Asesor" ref={keahlian => this.keahlian = keahlian} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <label className="label-input100">Status Asesor *</label>
+            <div className="wrap-select">
+              <select ref={stts => this.stts = stts} >
+                <option value="Aktif">Aktif</option>
+                <option value="TdkAktif">Tidak Aktif</option>
+              </select>
+              <span className="focus-input100"></span>
+            </div>
+            <label className="label-input100">Jadwal Asessor</label>
+            <div className="wrap-input100 rs1">
+              <input type="date" name="jdwl" placeholder="Jadwal" ref={jdwl => this.jdwl = jdwl} />
+              <span className="focus-input100"></span>
+            </div>
+
+            <div className="container-contact100-form-btn">
+              <button className="contact100-form-btn">
+                <span>
+                  Submit
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     )
   }
 }
