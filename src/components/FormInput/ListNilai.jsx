@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Asesor.css';
+import 'components/css/Form/Form.css';
 import {Table} from 'react-bootstrap';
 const nilai = [];
 

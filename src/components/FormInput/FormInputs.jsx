@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../css/Asesor.css';
+import 'components/css/Form/Form.css';
 
 
 export class FormInputs extends Component {
@@ -40,7 +40,7 @@ export class FormInputs extends Component {
         <div className="wrap-contact100">
           <form className="contact100-form validate-form" onSubmit={this.onSubmit}>
             <span className="contact100-form-title">
-              Contact Us
+              Input Asesor
 				</span>
             <label className="label-input100" >NIK *</label>
             <div className="wrap-input100">

@@ -8,7 +8,7 @@ import { Card } from "components/Card/Card.jsx";
 import 'components/css/Form/Form.css';
 
 const url = `http://192.168.10.123:3000/admin`;
-class Admin extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,14 +42,6 @@ class Admin extends Component {
         console.log(request.data);
       })
   }
-  componentDidMount() {
-    axios.get(url)
-      .then(request => {
-        this.setState({
-          payload: request.data.payload // setState berfungsi untuk manipulasi array  
-        });
-      })
-  }
   render() {
     return (
       <div className="content">
@@ -60,7 +52,7 @@ class Admin extends Component {
                 <div className="wrap-contact100">
                   <form className="contact100-form validate-form" onSubmit={this.handleSubmit}>
                     <span className="contact100-form-title">Input Admin</span>
-                    
+
                     <label className="label-input100" >NIK *</label>
                     <div className="wrap-input100">
                       <input type="text" name="nik" placeholder="NIK" onChange={this.handleChange} value={this.state.value.NIK} />
@@ -99,17 +91,7 @@ class Admin extends Component {
                   </form>
                 </div>
               </div>
-              <Card
-                content={
-                  <div><label>List Admin</label>
-                    {//nampilin dari inputan API
-                      this.state.payload.map(({ NIK, name, username, email }, key) => {
-                        return (<h5 key={key}>{NIK},{name},{username},{email}</h5>)
-                      })
-                    }
-                  </div>
-                }
-              />
+
             </Col>
           </Row>
         </Grid>
@@ -118,4 +100,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default Signup;
