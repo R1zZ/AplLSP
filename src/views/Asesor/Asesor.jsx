@@ -73,8 +73,6 @@ class Asesor extends Component {
   render() {
     return (
       <div className="content">
-
-        <div className="App">
           <FormInputs
             onAdd={this.onAdd}
           />
@@ -99,7 +97,6 @@ class Asesor extends Component {
               );
             })
           }
-        </div>
       </div>
     );
   }

@@ -26,17 +26,13 @@ class Sidebar extends Component {
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
   render() {
-    const sidebarBackground = {
-      backgroundImage: "url(" + imagine + ")"
-    };
     return (
       <div
         id="sidebar"
         className="sidebar"
-        data-color="black"
         data-image={imagine}
       >
-        <div className="sidebar-background" style={sidebarBackground} />
+        <div className="sidebar-background" />
         <div className="logo">
           <a
             href="https://www.creative-tim.com"

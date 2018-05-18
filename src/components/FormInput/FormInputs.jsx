@@ -55,12 +55,13 @@ export class FormInputs extends Component {
             </div>
 
 
-            <label className="label-input100" >Tempat Tanggal Lahir *</label>
-            <div className="wrap-input100 rs1">
+            <label className="label-input100" >Tempat Lahir *</label>
+            <div className="wrap-input100">
               <input type="text" name="tempatLahir" placeholder="Tempat Lahir" ref={tempatLahir => this.tempatLahir = tempatLahir} />
               <span className="focus-input100"></span>
             </div>
-            <div className="wrap-input100 rs1">
+            <label className="label-input100" >Tanggal Lahir *</label>
+            <div className="wrap-input100">
               <input type="date" name="tgl" placeholder="Tanggal Lahir" ref={tgl => this.tgl = tgl} />
               <span className="focus-input100"></span>
             </div>
@@ -78,8 +79,8 @@ export class FormInputs extends Component {
             </div>
 
             <label className="label-input100">Jenis Kelamin</label>
-            <div className="wrap-select">
-              <select ref={jk => this.jk = jk} >
+            <div className="wrap-input100">
+              <select ref={jk => this.jk = jk} className="selection-2 select2-hidden-accessible">
                 <option value="Pria">Pria</option>
                 <option value="Wanita">Wanita</option>
               </select>
@@ -93,7 +94,7 @@ export class FormInputs extends Component {
             </div>
 
             <label className="label-input100">Status Asesor *</label>
-            <div className="wrap-select">
+            <div className="wrap-input100">
               <select ref={stts => this.stts = stts} >
                 <option value="Aktif">Aktif</option>
                 <option value="TdkAktif">Tidak Aktif</option>
@@ -101,7 +102,7 @@ export class FormInputs extends Component {
               <span className="focus-input100"></span>
             </div>
             <label className="label-input100">Jadwal Asessor</label>
-            <div className="wrap-input100 rs1">
+            <div className="wrap-input100">
               <input type="date" name="jdwl" placeholder="Jadwal" ref={jdwl => this.jdwl = jdwl} />
               <span className="focus-input100"></span>
             </div>
