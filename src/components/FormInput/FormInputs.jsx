@@ -45,7 +45,6 @@ export class FormInputs extends Component {
             <label className="label-input100" >NIK *</label>
             <div className="wrap-input100">
               <input type="text" name="nik" placeholder="NIK" ref={nik => this.nik = nik} />
-              <span className="focus-input100"></span>
             </div>
 
             <label className="label-input100" >Nama *</label>

@@ -5,6 +5,7 @@ import Asesmen from "views/Asesmen/Asesmen";
 import SoalCBT from "views/SoalCBT/SoalCBT";
 import Tuk from "views/TUK/TUK";
 import Applicant from "views/Applicant/Applicant";
+import Sertifikasi from "views/Sertifikasi/Sertifikasi";
 
 const DashboardRoutes = [
   {
@@ -38,6 +39,12 @@ const DashboardRoutes = [
     name: "Applicant",
     icon: "pe-7s-bell",
     component: Applicant
+  },
+  {
+    path: "/Sertifikasi",
+    name: "Sertifikasi",
+    icon: "pe-7s-id",
+    component: Sertifikasi
   },
   { redirect: true, path: "/", to: "/Dashboard", name: "Dashboard" }
 ];
