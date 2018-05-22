@@ -1,106 +1,81 @@
 import React, { Component } from "react";
-//import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col } from "react-bootstrap";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import FormAsesor from './FormAsesor.jsx';
+import ListAsesor from './ListAsesor.jsx'
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Card from "components/Card/Card.jsx";
 
-//import Card from "components/Card/Card.jsx";
-import FormInputs from 'components/FormInput/FormInputs.jsx'
-import ListNilai from 'components/FormInput/ListNilai.jsx';
-
+const muiThemebtn = getMuiTheme();
 class Asesor extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    open: false,
+  };
 
-    this.state = {
-      nilai: []
-    };
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
 
-    this.onAdd = this.onAdd.bind(this);
-    this.onDelete = this.onDelete.bind(this);
-    this.onEditSubmit = this.onEditSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.getNilai();
-  }
-
-  getNilai() {
-    return this.state.nilai
-  }
-
-  onAdd(nik, nama, tempatLahir, tgl, almt, npwp, jk, keahlian, stts, jdwl) {
-    const nilai = this.getNilai();
-    nilai.push({
-      nik,
-      nama,
-      tempatLahir,
-      tgl,
-      almt,
-      npwp,
-      jk,
-      keahlian,
-      stts,
-      jdwl
-    });
-
-    this.setState({ nilai });
-  }
-
-  onDelete(nik) {
-    const nilai = this.getNilai();
-    const filterNilai = nilai.filter(nilai => {
-      return nilai.nik !== nik;
-    });
-    this.setState({ nilai: filterNilai });
-  }
-
-  onEditSubmit(nik, nama, tempatLahir, tgl, almt, npwp, jk, keahlian, stts, jdwl, originalName) {
-    let nilai = this.getNilai();
-    nilai = nilai.map(nilai => {
-      if (nilai.nik === originalName) {
-        nilai.nik = nik;
-        nilai.nama = nama;
-        nilai.tempatLahir = tempatLahir;
-        nilai.tgl = tgl;
-        nilai.almt = almt;
-        nilai.npwp = npwp;
-        nilai.jk = jk;
-        nilai.keahlian = keahlian;
-        nilai.stts = stts;
-        nilai.jdwl = jdwl;
-      }
-      return nilai;
-    });
-    this.setState({ nilai });
-  }
+  handleClose = () => {
+    this.setState({ open: false });
+  };
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+    ];
     return (
       <div className="content">
-          <FormInputs
-            onAdd={this.onAdd}
-          />
-          {
-            this.state.nilai.map(nilai => {
-              return (
-                <ListNilai
-                  key={nilai.nik}
-                  nik={nilai.nik}
-                  nama={nilai.nama}
-                  tempatLahir={nilai.tempatLahir}
-                  tgl={nilai.tgl}
-                  almt={nilai.almt}
-                  npwp={nilai.npwp}
-                  jk={nilai.jk}
-                  keahlian={nilai.keahlian}
-                  stts={nilai.stts}
-                  jdwl={nilai.jdwl}
-                  onDelete={this.onDelete}
-                  onEditSubmit={this.onEditSubmit}
-                />
-              );
-            })
-          }
+        <Grid fluid>
+          <Row>
+            <Col md={3}>
+              <Card
+                title="Tambah Data Asesor"
+                content={
+                  <div>
+                    <MuiThemeProvider muiTheme={muiThemebtn}>
+                      <center><RaisedButton label="Add" onClick={this.handleOpen} /></center>
+                      <Dialog
+                        title="Tambah Asesor"
+                        actions={actions}
+                        modal={false}
+                        open={this.state.open}
+                        onRequestClose={this.handleClose}
+                      >
+                        <FormAsesor />
+                  </Dialog>
+                    </MuiThemeProvider>
+                  </div>
+                }
+              />
+            </Col>
+            <Col md={12}>
+              <Card
+                title="List Asesor"
+                content={
+                  <div>
+                        <ListAsesor />
+                  </div>
+                }
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
 }
+
 
 export default Asesor;
