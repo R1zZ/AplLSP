@@ -3,7 +3,7 @@ import Admin from "views/Admin/Admin";
 import Asesor from "views/Asesor/Asesor";
 import Asesmen from "views/Asesmen/Asesmen";
 import SoalCBT from "views/SoalCBT/SoalCBT";
-import Tuk from "views/Tuk/Tuk";
+import Tuk from "views/TUK/TUK";
 import Applicant from "views/Applicant/Applicant";
 
 const DashboardRoutes = [
