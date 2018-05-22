@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
+import FormInput from './FormInput.jsx';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -52,7 +52,7 @@ class Sertifikasi extends Component {
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                       >
-                        Isi dari Dialog
+                        <FormInput />
                   </Dialog>
                     </MuiThemeProvider>
                   </div>
