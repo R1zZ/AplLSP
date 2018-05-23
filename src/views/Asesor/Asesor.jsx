@@ -5,9 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FormInputs from 'components/FormInput/FormInputs.jsx'
-import ListAsesor from './ListAsesor.jsx'
+import FormAsesor from './FormAsesor.jsx';
+import ListAsesor from './ListAsesor.jsx';
 import Card from "components/Card/Card.jsx";
+
 
 const muiThemebtn = getMuiTheme();
 export default class Asesor extends React.Component {
@@ -74,7 +75,7 @@ export default class Asesor extends React.Component {
                         onRequestClose={this.handleClose}
                         autoScrollBodyContent={true}
                       >
-                        <FormInputs
+                        <FormAsesor
                           onAdd={this.onAdd}
                         />
                       </Dialog>
@@ -96,6 +97,8 @@ export default class Asesor extends React.Component {
           </Row>
         </Grid>
       </div>
+
+
     );
   }
 }

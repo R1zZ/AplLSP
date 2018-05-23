@@ -1,61 +1,99 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FormInput from './FormInput.jsx';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import Card from "components/Card/Card.jsx";
+import axios from 'axios';
+//import { request } from "http";
 
-const muiThemebtn = getMuiTheme();
+const url = `http://sertimedia.com/api/v1/jadwal/1/sertifikat?api_key=46xYSrCEfwPeQfW1KCT7`;
 class Sertifikasi extends Component {
-  state = {
-    open: false,
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      value:{
+        id:'',
+        pengguna_id:'',
+        status:'',
+        nilai:'',
+        sertifikasi_nomor:'',
+        sertifikasi_tanggal_terbit:'',
+        sertifikasi_tanggal_mulai:'',
+        sertifikasi_tanggal_selesai:'',
+        banding_permintaan:'',
+        banding_keputusan:''  
+      },
+      payload:[]
+    }
+    
+  }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
+/*  handleSubmit = event => {
+    event.preventDefault();
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+    const docs = {
+      id:this.state.id,
+      pengguna_id:this.state.pengguna_id,
+      status:this.state.status,
+      nilai:this.state.nilai,
+      sertifikasi_nomor:this.state.sertifikasi_nomor,
+      sertifikasi_tanggal_terbit:this.state.sertifikasi_tanggal_terbit,
+      sertifikasi_tanggal_mulai:this.state.sertifikasi_tanggal_mulai,
+      sertifikasi_tanggal_selesai:this.state.sertifikasi_tanggal_selesai,
+      banding_permintaan:this.state.banding_permintaan,
+      banding_keputusan:this.state.banding_keputusan      
+    };
+  }*/
+  componentDidMount(){
+    axios.get(url)
+      .then(request => {
+        this.setState({
+          payload:request.data.payload
+        });
+      })
+  }
   render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        onClick={this.handleClose}
-      />,
-    ];
     return (
       <div className="content">
         <Grid fluid>
           <Row>
             <Col md={3}>
               <Card
-                title="Tambah Data Sertifikasi"
+                title="List Data Sertifikasi"
                 content={
-                    <MuiThemeProvider muiTheme={muiThemebtn}>
                   <div>
-                      <center><RaisedButton label="Add" onClick={this.handleOpen} /></center>
-                      <Dialog
-                        title="Isi dari Dialog"
-                        actions={actions}
-                        modal={false}
-                        open={this.state.open}
-                        onRequestClose={this.handleClose}
-                      >
-                        <FormInput />
-                  </Dialog>
+                    {//nampilin dari inputan API
+                      this.state.payload.map(({ 
+                        id, 
+                        pengguna_id, 
+                        status, 
+                        nilai, 
+                        sertifikasi_nomor,
+                        sertifikasi_tanggal_terbit,
+                        sertifikasi_tanggal_mulai,
+                        sertifikasi_tanggal_selesai,
+                        banding_permintaan,
+                        banding_keputusan
+                       }, key) => {
+                        return (
+                        <h5 key={key}>
+                          {id},
+                          {pengguna_id},
+                          {status},
+                          {nilai},
+                          {sertifikasi_nomor},
+                          {sertifikasi_tanggal_terbit},
+                          {sertifikasi_tanggal_mulai},
+                          {sertifikasi_tanggal_selesai},
+                          {banding_permintaan},
+                          {banding_keputusan}
+                        </h5>)
+                      })
+                    }
                   </div>
-                    </MuiThemeProvider>
                 }
               />
             </Col>
