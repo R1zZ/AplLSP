@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import FormAsesor from './FormAsesor.jsx';
+import ListAsesor from './ListAsesor.jsx'
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FormInputs from 'components/FormInput/FormInputs.jsx'
-import ListAsesor from './ListAsesor.jsx'
 import Card from "components/Card/Card.jsx";
 
 const muiThemebtn = getMuiTheme();
-export default class Asesor extends React.Component {
+class Asesor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      nilai: []
+      nilai:[]
     };
 
     this.onAdd = this.onAdd.bind(this);
@@ -46,14 +46,13 @@ export default class Asesor extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
         onClick={this.handleClose}
-      />
+      />,
     ];
     return (
       <div className="content">
@@ -63,23 +62,22 @@ export default class Asesor extends React.Component {
               <Card
                 title="Tambah Data Asesor"
                 content={
-                  <MuiThemeProvider muiTheme={muiThemebtn}>
-                    <div>
-                      <RaisedButton label="Add" onClick={this.handleOpen} />
+                    <MuiThemeProvider muiTheme={muiThemebtn}>
+                  <div>
+                      <center><RaisedButton label="Add" onClick={this.handleOpen} /></center>
                       <Dialog
-                        title="Input Data Asesor"
+                        title="Tambah Asesor"
                         actions={actions}
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
-                        autoScrollBodyContent={true}
                       >
-                        <FormInputs
+                        <FormAsesor
                           onAdd={this.onAdd}
                         />
-                      </Dialog>
-                    </div>
-                  </MuiThemeProvider>
+                  </Dialog>
+                  </div>
+                    </MuiThemeProvider>
                 }
               />
             </Col>
@@ -88,7 +86,7 @@ export default class Asesor extends React.Component {
                 title="List Asesor"
                 content={
                   <div>
-                    <ListAsesor />
+                        <ListAsesor />
                   </div>
                 }
               />
@@ -99,3 +97,6 @@ export default class Asesor extends React.Component {
     );
   }
 }
+
+
+export default Asesor;

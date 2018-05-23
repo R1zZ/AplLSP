@@ -42,8 +42,8 @@ class Sertifikasi extends Component {
               <Card
                 title="Tambah Data Sertifikasi"
                 content={
-                  <div>
                     <MuiThemeProvider muiTheme={muiThemebtn}>
+                  <div>
                       <center><RaisedButton label="Add" onClick={this.handleOpen} /></center>
                       <Dialog
                         title="Isi dari Dialog"
@@ -54,8 +54,8 @@ class Sertifikasi extends Component {
                       >
                         <FormInput />
                   </Dialog>
-                    </MuiThemeProvider>
                   </div>
+                    </MuiThemeProvider>
                 }
               />
             </Col>

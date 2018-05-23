@@ -4,7 +4,7 @@ import { Form, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 class FormInput extends Component {
   render() {
     return (
-      <form>
+      <div>
         <Form inline>
           <FormGroup>
             <ControlLabel>NIK</ControlLabel>
@@ -63,7 +63,7 @@ class FormInput extends Component {
             <FormControl type="date" placeholder="Jadwal Asesor" />
           </FormGroup>
         </Form>
-      </form>
+      </div>
     )
   }
 }
