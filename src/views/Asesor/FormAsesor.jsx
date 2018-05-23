@@ -1,11 +1,47 @@
 import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+/*import axios from 'axios';
 
+const url = `http://192.168.10.234:9000/assesors`*/
 class FormInput extends Component {
+/*  constructor(props) {
+    super(props);
+    this.state = {
+      value: {
+        id: '',
+        accountID: '',
+        firstName: '',
+        competencies: '',
+        active: ''
+      },
+      payload: []
+    };
+  }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });//memanggil semua data pada DB
+  }
+    handleSubmit = event => {
+      event.preventDefault();
+      const docs = {
+        id: this.state.id,
+        accountID: this.state.accountID,
+        firstName: this.state.firstName,
+        competencies: this.state.competencies,
+        active: this.state.competencies
+      };
+      axios.post(url, docs)
+        .then(request => {
+          console.log(request);
+          console.log(request.data);
+        })
+    }
+*/
   render() {
     return (
-      <form>
-        <Form inline>
+      <div>
+        <Form inline onSubmit={this.handleSubmit}>
           <FormGroup>
             <ControlLabel>NIK</ControlLabel>
             <FormControl type="text" placeholder="NIK" />
@@ -63,7 +99,7 @@ class FormInput extends Component {
             <FormControl type="date" placeholder="Jadwal Asesor" />
           </FormGroup>
         </Form>
-      </form>
+      </div>
     )
   }
 }

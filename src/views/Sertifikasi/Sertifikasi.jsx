@@ -60,7 +60,7 @@ class Sertifikasi extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
-            <Col md={3}>
+            <Col md={12}>
               <Card
                 title="List Data Sertifikasi"
                 content={

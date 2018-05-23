@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "react-bootstrap";
-
+import { Table, Button } from "react-bootstrap";
 import axios from 'axios';
 
 const url = `http://192.168.10.234:9000/assesors`
@@ -92,7 +91,7 @@ class Asesor extends Component {
                     <td>{firstName}</td>
                     <td>{competencies}</td>
                     <td>{active}</td>
-                    <td>Tombol edit</td>
+                    <td><Button>Edit</Button></td>
                   </tr>
                 )
               })
