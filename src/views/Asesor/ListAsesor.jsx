@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Glyphicon } from "react-bootstrap";
 import axios from 'axios';
 
 const url = `http://192.168.10.234:9000/assesors`
@@ -8,17 +8,7 @@ class Asesor extends Component {
     super(props);
     this.state = {
       value: {
-        /*        id: '',
-                NPWP: '',
-                nama: '',
-                tempatlahir: '',
-                tgl_lahir: '',
-                alamat: '',
-                jk: '',
-                keahlian: '',
-                status: '',
-                jdwal_asesor: ''
-        */
+
         id: '',
         accountID: '',
         firstName: '',
@@ -64,7 +54,7 @@ class Asesor extends Component {
     console.log(this.state.payload);
     return (
       <div className="content">
-        <Table responsive>
+        <Table responsive title="List Data Asesor">
           <thead>
             <tr>
               <th>id</th>
@@ -91,7 +81,14 @@ class Asesor extends Component {
                     <td>{firstName}</td>
                     <td>{competencies}</td>
                     <td>{active}</td>
-                    <td><Button>Edit</Button></td>
+                    <td>
+                      <Button bsSize="xsmall">
+                        <Glyphicon glyph="pencil" /> Edit
+                      </Button>
+                      <Button bsSize="xsmall">
+                        <Glyphicon glyph="remove" /> Delete
+                      </Button>
+                    </td>
                   </tr>
                 )
               })
