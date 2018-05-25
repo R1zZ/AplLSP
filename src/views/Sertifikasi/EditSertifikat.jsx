@@ -32,7 +32,7 @@ class Sertifikasi extends Component {
 
     const data = { payload: this.state.name }
 
-    axios.patch(url,{data})
+    axios.put(url,{data})
       .then(request => {
         console.log(request);
         console.log(request.data)
