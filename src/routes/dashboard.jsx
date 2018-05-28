@@ -3,7 +3,7 @@ import Admin from "views/Admin/Admin";
 import Asesor from "views/Asesor/Asesor";
 import Asesmen from "views/Asesmen/Asesmen";
 import SoalCBT from "views/SoalCBT/SoalCBT";
-import Tuk from "views/Tuk/Tuk";
+import TUK from "views/TUK/TUK";
 import Applicant from "views/Applicant/Applicant";
 import Sertifikasi from "views/Sertifikasi/Sertifikasi";
 
@@ -33,7 +33,7 @@ const DashboardRoutes = [
     component: Asesmen
   },
   { path: "/SoalCBT", name: "Soal CBT", icon: "pe-7s-science", component: SoalCBT },
-  { path: "/Tuk", name: "Tuk", icon: "pe-7s-map-marker", component: Tuk },
+  { path: "/TUK", name: "TUK", icon: "pe-7s-map-marker", component: TUK },
   {
     path: "/Applicant",
     name: "Applicant",
