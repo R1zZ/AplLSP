@@ -113,7 +113,7 @@ class TUK extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="List TUK"
+                title="List Jadwal TUK"
                 content={
                   this.state.payload.map(payload => {
                     return (
