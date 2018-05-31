@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Dialog from 'material-ui/Dialog';
 import axios from 'axios';
 import FlatButton from 'material-ui/FlatButton';
-//import TimeInput from 'react-time-input';
+import ProdukTuk from './ProdukTuk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -95,8 +95,6 @@ class ListTuk extends Component {
       waktu_mulai,
       waktu_selesai,
       lokasi,
-      harga,
-      deskripsi,
       status
     } = this.props;
 
@@ -141,8 +139,6 @@ class ListTuk extends Component {
                       <th>Waktu Mulai</th>
                       <th>Waktu Selesai</th>
                       <th>Lokasi</th>
-                      <th>Harga</th>
-                      <th>Deskripsi</th>
                       <th>Status</th>
                       <th>Produk</th>
                       <th>Action</th>
@@ -160,8 +156,6 @@ class ListTuk extends Component {
                             <td>{waktu_mulai}</td>
                             <td>{waktu_selesai}</td>
                             <td>{lokasi}</td>
-                            <td>{harga}</td>
-                            <td>{deskripsi}</td>
                             <td>{status}</td>
                             <td>
                               <RaisedButton label="Lihat Produk" onClick={this.handleOpen} />
@@ -173,7 +167,7 @@ class ListTuk extends Component {
                                 onRequestClose={this.handleClose}
                               //autoScrollBodyContent={true}
                               >
-                                Isi Produk
+                                <ProdukTuk />
                                 </Dialog>
                             </td>
                             <td>

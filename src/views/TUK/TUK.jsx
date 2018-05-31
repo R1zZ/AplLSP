@@ -20,8 +20,6 @@ class TUK extends Component {
         waktu_mulai: '',
         waktu_selesai: '',
         lokasi: '',
-        harga: '',
-        deskripsi: '',
         status: ''
       },
       payload: []
@@ -52,8 +50,6 @@ class TUK extends Component {
     waktu_mulai,
     waktu_selesai,
     lokasi,
-    harga,
-    deskripsi,
     status) {
     const payload = this.getNilai();
     payload.push({
@@ -64,8 +60,6 @@ class TUK extends Component {
       waktu_mulai,
       waktu_selesai,
       lokasi,
-      harga,
-      deskripsi,
       status
     });
     this.setState({ payload })
@@ -79,8 +73,6 @@ class TUK extends Component {
     waktu_mulai,
     waktu_selesai,
     lokasi,
-    harga,
-    deskripsi,
     status,
     originalID) {
     let payload = this.getNilai();
@@ -93,8 +85,6 @@ class TUK extends Component {
         payload.waktu_mulai = waktu_mulai;
         payload.waktu_selesai = waktu_selesai;
         payload.lokasi = lokasi;
-        payload.harga = harga;
-        payload.deskripsi = deskripsi;
         payload.status = status;
       }
       return payload;
@@ -136,8 +126,6 @@ class TUK extends Component {
                         waktu_mulai={payload.waktu_mulai}
                         waktu_selesai={payload.waktu_selesai}
                         lokasi={payload.lokasi}
-                        harga={payload.harga}
-                        deskripsi={payload.deskripsi}
                         status={payload.status}
                       />
                     )
