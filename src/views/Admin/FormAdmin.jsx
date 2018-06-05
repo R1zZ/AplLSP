@@ -72,7 +72,6 @@ class FormAdmin extends Component {
   
   showInputError(refName) {
     const validity = this.refs[refName].validity;
-    //const label = document.getElementById(`${refName}Label`);
     const error = document.getElementById(`${refName}Error`);
     const isPasswordConfirm = refName === 'passwordConfirm';
     
