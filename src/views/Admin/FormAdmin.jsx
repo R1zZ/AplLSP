@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { Button, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { Button, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
 
 const url = `http://192.168.10.123:3000/admin`;
 class FormAdmin extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleRePass = this.handleRePass.bind(this);
     this.state = {
+      value: '',
       onChange: {
         admin_id: '',
         name: '',
         username: '',
         password: '',
-        email: ''
+        email: '',
+        repass:''
       },
-      payload: []
+      payload: [],
     };
   }
 
@@ -24,6 +28,9 @@ class FormAdmin extends Component {
     });//memanggil semua data pada DB
   }
 
+  handleRePass(e){
+    this.setState({ value: e.target.value });
+  }
   handleSubmit = event => {
     event.preventDefault();
     //pendeklarasian state di DB
@@ -31,7 +38,7 @@ class FormAdmin extends Component {
       admin_id: this.state.admin_id,
       name: this.state.name,
       username: this.state.username,
-      password: this.state.username,
+      password: this.state.password,
       email: this.state.email
     };
     console.log(docs);
@@ -41,33 +48,53 @@ class FormAdmin extends Component {
         console.log(request.data);
       })
   }
+
+ /* validate(){
+    if (password !== value) {
+      return "Password tidak sesuai";
+    }
+    return "Password Sesuai";
+  }*/
+  getValidationState() {
+    const pass1 = this.state.onChange.password;
+    const repass = this.state.value.length;
+    if (repass >10 ) return 'success';
+      else if (repass > 5 ) return 'warning';
+      else if (repass > 0) return 'error';
+    return null;
+  }
+
   render() {
-    console.log(this.state.payload);
+    //console.log(this.state.payload);
     return (
       <div className="component">
-        <form onSubmit={this.handleSubmit}>
+        <form  onSubmit={this.handleSubmit}>
           <FormGroup>
             <ControlLabel>ID Admin</ControlLabel>{' '}
-            <FormControl type="text" placeholder="admin_id" value={this.state.admin_id} onChange={this.admin_id} />
+            <FormControl type="text" name="admin_id" defaultValue={this.state.admin_id} readOnly="readOnly" />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Nama</ControlLabel>{' '}
-            <FormControl type="text" placeholder="name" value={this.state.name} onChange={this.name} />
+            <FormControl type="text" name="name" placeholder="name" value={this.state.name} onChange={this.name} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Username</ControlLabel>{' '}
-            <FormControl type="text" placeholder="username" value={this.state.username} onChange={this.username} />
+            <FormControl type="text" name="username" placeholder="username" value={this.state.username} onChange={this.username} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Password</ControlLabel>{' '}
-            <FormControl type="password" placeholder="password" value={this.state.password} onChange={this.password} />
+            <FormControl type="password" name="pass1" placeholder="password" value={this.state.password} />
+          </FormGroup>
+          <FormGroup validationState={this.getValidationState()}>
+            <ControlLabel>Re Password</ControlLabel>{' '}
+            <FormControl type="password" value={this.state.value} onChange={this.handleRePass} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Email</ControlLabel>{' '}
-            <FormControl type="email" placeholder="email" value={this.state.email} onChange={this.email} />
+            <FormControl type="email" name="email" placeholder="email" value={this.state.email} onChange={this.email} />
           </FormGroup>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" name="btn">Submit</Button>
         </form>
       </div >
     )
