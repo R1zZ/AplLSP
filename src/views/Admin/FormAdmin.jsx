@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
+
 const url = `http://192.168.10.123:3000/admin`;
 class FormAdmin extends Component {
   constructor(props) {
@@ -22,25 +24,20 @@ class FormAdmin extends Component {
   }
   
   handleChange(e) {
-    e.target.classList.add('active');
-    
-    this.setState({
-      [e.target.name]: e.target.value
+    this.setState({handleChange: 
+      {...this.state.handleChange, 
+        [e.target.name]: e.target.value
+    }
     });
     
+    e.target.classList.add('active');
+        
     this.showInputError(e.target.name);
   }
   
   handleSubmit(e) {    
     e.preventDefault();
-    
-    console.log('component state', JSON.stringify(this.state));
-    
-    if (!this.showFormErrors()) {
-      console.log('form is invalid: do not submit');
-    } else {
-      console.log('form is valid: submit');
-    }
+    console.log(this.state);
 
     const docs = {
       admin_id: this.state.admin_id,
@@ -75,9 +72,8 @@ class FormAdmin extends Component {
   
   showInputError(refName) {
     const validity = this.refs[refName].validity;
-    const label = document.getElementById(`${refName}Label`).textContent;
+    //const label = document.getElementById(`${refName}Label`);
     const error = document.getElementById(`${refName}Error`);
-    const isPassword = refName.indexOf('password') !== -1;
     const isPasswordConfirm = refName === 'passwordConfirm';
     
     if (isPasswordConfirm) {
@@ -88,26 +84,56 @@ class FormAdmin extends Component {
       }
     }
         
-    if (!validity.valid) {
+    if (!validity.valid ) {
       if (validity.valueMissing) {
-        error.textContent = `${label} is a required field`; 
-      } else if (validity.typeMismatch) {
-        error.textContent = `${label} should be a valid email address`; 
-      } else if (isPassword && validity.patternMismatch) {
-        error.textContent = `${label} should be longer than 4 chars`; 
+        error.textContent = 'is a required field'; 
       } else if (isPasswordConfirm && validity.customError) {
         error.textContent = 'Passwords do not match';
       }
       return false;
     }
     
-    error.textContent = '';
+    error.textContent = ' ';
     return true;
   }
 
   render() {
     return (
       <form noValidate>
+        <div className="form-group">
+          <label id="adminIdLabel">ID Admin</label>
+          <input className="form-control"
+            type="text"
+            name="admin_id"
+            ref="admin_id"
+            value={ this.state.admin_id } 
+            readOnly
+            required
+          />
+          <div className="error" id="adminIdError" />
+        </div>
+        <div className="form-group">
+          <label id="nameLabel">Nama</label>
+          <input className="form-control"
+            type="text"
+            name="name"
+            ref="name"
+            value={ this.state.name } 
+            onChange={ this.handleChange }
+          />
+          <div className="error" id="nameError" />
+        </div>
+        <div className="form-group">
+          <label id="usernameLabel">Username</label>
+          <input className="form-control"
+            type="text"
+            name="username"
+            ref="username"
+            value={ this.state.username } 
+            onChange={ this.handleChange }
+          />
+          <div className="error" id="usernameError" />
+        </div>
         <div className="form-group">
           <label id="emailLabel">Email</label>
           <input className="form-control"
@@ -116,7 +142,7 @@ class FormAdmin extends Component {
             ref="email"
             value={ this.state.email } 
             onChange={ this.handleChange }
-            required />
+          />
           <div className="error" id="emailError" />
         </div>
         <div className="form-group">
@@ -127,7 +153,7 @@ class FormAdmin extends Component {
             ref="password"
             value={ this.state.password } 
             onChange={ this.handleChange }
-            pattern=".{5,}"
+            pattern=" "
             required />
           <div className="error" id="passwordError" />
         </div>
