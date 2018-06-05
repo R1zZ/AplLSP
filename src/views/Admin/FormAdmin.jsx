@@ -1,103 +1,151 @@
 import React, { Component } from 'react';
-import { Button, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
-
 const url = `http://192.168.10.123:3000/admin`;
 class FormAdmin extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleRePass = this.handleRePass.bind(this);
+  constructor(props) {
+    super(props);
+    
     this.state = {
-      value: '',
-      onChange: {
-        admin_id: '',
-        name: '',
-        username: '',
-        password: '',
+      value: {
+        admin_id:'',
+        name:'',
+        username:'',
         email: '',
-        repass:''
+        password: '',
+        passwordConfirm: ''          
       },
-      payload: [],
+      payload: []
     };
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleChange = event => {
+  
+  handleChange(e) {
+    e.target.classList.add('active');
+    
     this.setState({
-      [event.target.name]: event.target.onChange
-    });//memanggil semua data pada DB
+      [e.target.name]: e.target.value
+    });
+    
+    this.showInputError(e.target.name);
   }
+  
+  handleSubmit(e) {    
+    e.preventDefault();
+    
+    console.log('component state', JSON.stringify(this.state));
+    
+    if (!this.showFormErrors()) {
+      console.log('form is invalid: do not submit');
+    } else {
+      console.log('form is valid: submit');
+    }
 
-  handleRePass(e){
-    this.setState({ value: e.target.value });
-  }
-  handleSubmit = event => {
-    event.preventDefault();
-    //pendeklarasian state di DB
     const docs = {
       admin_id: this.state.admin_id,
       name: this.state.name,
       username: this.state.username,
-      password: this.state.password,
-      email: this.state.email
+      email: this.state.email,
+      password: this.state.password
     };
-    console.log(docs);
-    axios.post(url, docs)
-      .then(request => {
-        console.log(request);
-        console.log(request.data);
-      })
+    axios.get(url, docs)
+    .then(request => {
+      console.log(request);
+      console.log(request.data);
+    })
   }
-
- /* validate(){
-    if (password !== value) {
-      return "Password tidak sesuai";
+  
+  showFormErrors() {
+    const inputs = document.querySelectorAll('input');
+    let isFormValid = true;
+    
+    inputs.forEach(input => {
+      input.classList.add('active');
+      
+      const isInputValid = this.showInputError(input.name);
+      
+      if (!isInputValid) {
+        isFormValid = false;
+      }
+    });
+    
+    return isFormValid;
+  }
+  
+  showInputError(refName) {
+    const validity = this.refs[refName].validity;
+    const label = document.getElementById(`${refName}Label`).textContent;
+    const error = document.getElementById(`${refName}Error`);
+    const isPassword = refName.indexOf('password') !== -1;
+    const isPasswordConfirm = refName === 'passwordConfirm';
+    
+    if (isPasswordConfirm) {
+      if (this.refs.password.value !== this.refs.passwordConfirm.value) {
+        this.refs.passwordConfirm.setCustomValidity('Passwords do not match');
+      } else {
+        this.refs.passwordConfirm.setCustomValidity('');
+      }
     }
-    return "Password Sesuai";
-  }*/
-  getValidationState() {
-    const pass1 = this.state.onChange.password;
-    const repass = this.state.value.length;
-    if (repass >10 ) return 'success';
-      else if (repass > 5 ) return 'warning';
-      else if (repass > 0) return 'error';
-    return null;
+        
+    if (!validity.valid) {
+      if (validity.valueMissing) {
+        error.textContent = `${label} is a required field`; 
+      } else if (validity.typeMismatch) {
+        error.textContent = `${label} should be a valid email address`; 
+      } else if (isPassword && validity.patternMismatch) {
+        error.textContent = `${label} should be longer than 4 chars`; 
+      } else if (isPasswordConfirm && validity.customError) {
+        error.textContent = 'Passwords do not match';
+      }
+      return false;
+    }
+    
+    error.textContent = '';
+    return true;
   }
 
   render() {
-    //console.log(this.state.payload);
     return (
-      <div className="component">
-        <form  onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <ControlLabel>ID Admin</ControlLabel>{' '}
-            <FormControl type="text" name="admin_id" defaultValue={this.state.admin_id} readOnly="readOnly" />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Nama</ControlLabel>{' '}
-            <FormControl type="text" name="name" placeholder="name" value={this.state.name} onChange={this.name} />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Username</ControlLabel>{' '}
-            <FormControl type="text" name="username" placeholder="username" value={this.state.username} onChange={this.username} />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Password</ControlLabel>{' '}
-            <FormControl type="password" name="pass1" placeholder="password" value={this.state.password} />
-          </FormGroup>
-          <FormGroup validationState={this.getValidationState()}>
-            <ControlLabel>Re Password</ControlLabel>{' '}
-            <FormControl type="password" value={this.state.value} onChange={this.handleRePass} />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Email</ControlLabel>{' '}
-            <FormControl type="email" name="email" placeholder="email" value={this.state.email} onChange={this.email} />
-          </FormGroup>
-
-          <Button type="submit" name="btn">Submit</Button>
-        </form>
-      </div >
-    )
+      <form noValidate>
+        <div className="form-group">
+          <label id="emailLabel">Email</label>
+          <input className="form-control"
+            type="email"
+            name="email"
+            ref="email"
+            value={ this.state.email } 
+            onChange={ this.handleChange }
+            required />
+          <div className="error" id="emailError" />
+        </div>
+        <div className="form-group">
+          <label id="passwordLabel">Password</label>
+          <input className="form-control"
+            type="password" 
+            name="password"
+            ref="password"
+            value={ this.state.password } 
+            onChange={ this.handleChange }
+            pattern=".{5,}"
+            required />
+          <div className="error" id="passwordError" />
+        </div>
+        <div className="form-group">
+          <label id="passwordConfirmLabel">Confirm Password</label>
+          <input className="form-control"
+            type="password" 
+            name="passwordConfirm"
+            ref="passwordConfirm"
+            value={ this.state.passwordConfirm } 
+            onChange={ this.handleChange }
+            required />
+          <div className="error" id="passwordConfirmError" />
+        </div>
+        <button className="btn btn-primary"
+          onClick={ this.handleSubmit }>submit</button>
+      </form>
+    );
   }
 }
 
