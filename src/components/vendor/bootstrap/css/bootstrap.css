@@ -3159,7 +3159,7 @@ tbody.collapse.show {
 }
 
 .nav-link {
-  display: block;
+  /* display: block; */
   padding: 0.5rem 1rem;
 }
 
@@ -3190,14 +3190,14 @@ tbody.collapse.show {
 }
 
 .nav-tabs .nav-link.disabled {
-  color: #868e96;
-  background-color: transparent;
-  border-color: transparent;
+  color: #ffffff;
+  /* background-color: transparent;
+  border-color: transparent; */
 }
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
+  color: #ffffff;
   background-color: #fff;
   border-color: #ddd #ddd #fff;
 }

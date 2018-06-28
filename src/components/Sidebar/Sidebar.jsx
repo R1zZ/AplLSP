@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import HeaderLinks from "../Header/HeaderLinks.jsx";
 
 import imagine from "assets/img/sidebar-3.jpg";
-import logo from "assets/img/reactlogo.png";
+import logo from "assets/img/LSP.png";
 
 import dashboardRoutes from "routes/dashboard.jsx";
 
@@ -46,7 +46,7 @@ class Sidebar extends Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            NST_Tester
+            LSP
           </a>
         </div>
         <div className="sidebar-wrapper">

@@ -1,0 +1,7 @@
+.sidebar .nav p{
+  color: white;
+}
+
+.sidebar .nav li.active > a > p {
+  color: black;
+} 
